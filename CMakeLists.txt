@@ -11,6 +11,7 @@ project(LearningTrack
     LANGUAGES C CXX
 )
 
+# 双轨守卫仅在主仓布局（learning/ 作为子目录）下存在；独立仓跳过
 set(_dual_track_guard "${CMAKE_CURRENT_LIST_DIR}/../cmake/dual-track-guard.cmake")
 if(EXISTS "${_dual_track_guard}")
     include("${_dual_track_guard}")
@@ -43,13 +44,18 @@ endif()
 find_package(Threads REQUIRED)
 
 # 学习轨道不依赖 googletest；如有需要可在此处启用
-# S6 起：学习层启用 GTest，关联到工程层 vendored 的 googletest 子模块
-if(BUILD_TESTING AND EXISTS "${CMAKE_CURRENT_LIST_DIR}/../third_part/googletest")
-    set(_gtest_build_dir "${CMAKE_BINARY_DIR}/_googletest_build")
-    add_subdirectory(
-        "${CMAKE_CURRENT_LIST_DIR}/../third_part/googletest"
-        "${_gtest_build_dir}"
-    )
+# S6 起：学习层启用 GTest，关联到 vendored 的 googletest 子模块
+# 独立仓布局用本仓 third_part/，主仓布局（learning/ 作为子目录）用 ../third_part/
+if(BUILD_TESTING)
+    if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/third_part/googletest")
+        set(_gtest_src "${CMAKE_CURRENT_LIST_DIR}/third_part/googletest")
+    elseif(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../third_part/googletest")
+        set(_gtest_src "${CMAKE_CURRENT_LIST_DIR}/../third_part/googletest")
+    endif()
+    if(_gtest_src)
+        set(_gtest_build_dir "${CMAKE_BINARY_DIR}/_googletest_build")
+        add_subdirectory("${_gtest_src}" "${_gtest_build_dir}")
+    endif()
 endif()
 
 # 接口库：暴露 learning/include 给学习轨道自身使用
