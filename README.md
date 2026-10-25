@@ -43,3 +43,21 @@ ctest --test-dir ../build/learning --output-on-failure
 - 学习专用工具——从根 `tools/` 拆分迁入 `learning/tools/`
 
 不可引用 `engineering/` 任何路径。
+
+---
+
+## 什么该放这个仓
+
+本仓是四个仓中的**学习仓**（learning）。判断一份东西该放这里、还是放 `projects` / `ai-docs` / `reference`：
+
+| 内容 | 归属 |
+|---|---|
+| 学习笔记、课程进度、算法题解、Obsidian vault | learning |
+| 学习轨的 openspec spec（从 projects 迁出） | learning `openspec/specs/` |
+| 工程代码、测试 | projects |
+| 学习中产出的**可复用**方法论、模板 | ai-docs |
+
+**判定口诀**：换个项目还用得上 → ai-docs；只对这个项目有意义 → 留在本仓。
+
+> 完整目录规范见父仓 `StillEvolving/docs/architecture.md`；机器可读版见父仓 `repos.yaml` 的 `must_contain` 字段。
+
