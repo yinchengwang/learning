@@ -58,3 +58,6 @@ temp_*.txt
 temp_*.cpp
 *.bak
 .DS_Store
+
+# Obsidian vault 同步工具的状态文件（工具运行时产物，不入库）
+notes/.sync-pipeline-state.json

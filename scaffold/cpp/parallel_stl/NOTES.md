@@ -53,9 +53,9 @@ TBB (`-ltbb`) 提供：
 
 ### 相关文件
 
-- `C:/code/book/engineering/src/algo-prod/sort/sort.c` - 通用排序（无 SIMD）
-- `C:/code/book/engineering/src/algo-prod/distance/distance.c` - SIMD 距离计算
-- `C:/code/book/engineering/src/algo-prod/quantization/adaptive_quantization.c` - 量化 SIMD
+- `C:/code/StillEvolving/projects/engine/src/algo-prod/sort/sort.c` - 通用排序（无 SIMD）
+- `C:/code/StillEvolving/projects/engine/src/algo-prod/distance/distance.c` - SIMD 距离计算
+- `C:/code/StillEvolving/projects/engine/src/algo-prod/quantization/adaptive_quantization.c` - 量化 SIMD
 
 ### 延伸学习
 
