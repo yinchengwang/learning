@@ -22,10 +22,9 @@ learning/notes/
 ├── _papers/                   # 论文笔记
 ├── _excerpts/                 # 摘录
 ├── _hardware/                 # 硬件笔记
-├── linux/, db/, c/, ds/, cpp/, python/   # 6 大学习轨道
+├── linux/, db/, c/, ds/, cpp/, python/   # 6 大学习轨道（ds/ = 5 个数据结构笔记，2026-10-26 由根目录迁入）
 ├── HardWare/, LLM/, Redis/, neo4j/, sqlite/, vectordb/  # 旧目录（待 Phase C 迁移）
-├── diary/, excerpt/, language/, paper/, test/         # 旧目录（待 Phase C 迁移）
-└── ds-*.md (5 个根目录笔记)             # 待 Phase C 迁入 ds/
+└── diary/, excerpt/, language/, paper/, test/         # 旧目录（待 Phase C 迁移）
 ```
 
 ## 6 大学习轨道
