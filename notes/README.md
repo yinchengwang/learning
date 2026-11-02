@@ -1,6 +1,6 @@
 # 学习 Obsidian Vault
 
-> 132 个学习笔记 + 6 大学习轨道 + Dataview 仪表盘
+> 164 篇 Markdown 笔记 + 6 大学习轨道 + Dataview 仪表盘
 
 ## 快速开始
 

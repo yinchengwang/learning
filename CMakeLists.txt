@@ -1,7 +1,8 @@
 # learning/CMakeLists.txt
 # 学习轨道 CMake 入口（教学代码：learning/ds-c/orig/ + 教学测试）
-# 由根 CMakeLists.txt 在 LEARNING_BUILD=ON 时 add_subdirectory 引入
-# 严禁引用 engineering/ 任何路径
+# 学习轨已切出为独立仓：根 CMakeLists.txt 已移除 LEARNING_BUILD 分支，
+# 本仓是独立构建入口（cmake -B build/learning -S .）
+# 严禁引用 ../projects/engine/ 下的工程代码
 
 cmake_minimum_required(VERSION 3.20)
 
@@ -11,7 +12,9 @@ project(LearningTrack
     LANGUAGES C CXX
 )
 
-# 双轨守卫仅在主仓布局（learning/ 作为子目录）下存在；独立仓跳过
+# 双轨守卫仅在主仓布局（learning/ 作为子目录）下存在；独立仓跳过。
+# 注意：当前主仓根下没有 cmake/ 目录，该守卫实际处于静默跳过状态，
+# 跨轨隔离目前靠约定而非构建期强制。
 set(_dual_track_guard "${CMAKE_CURRENT_LIST_DIR}/../cmake/dual-track-guard.cmake")
 if(EXISTS "${_dual_track_guard}")
     include("${_dual_track_guard}")

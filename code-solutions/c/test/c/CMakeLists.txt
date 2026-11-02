@@ -27,7 +27,7 @@ target_link_libraries(leetcode_tests
 )
 
 set_target_properties(leetcode_tests PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
 # gtest_discover_tests
