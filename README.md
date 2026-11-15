@@ -2,15 +2,15 @@
 
 学习轨道 —— **学习仓**（`yinchengwang/learning`）。Obsidian 笔记、课程进度、脚手架工程、算法题解、鸿蒙 ArkTS、面试资料。
 
-本仓是 StillEvolving 四仓聚合中的学习仓：学习笔记、课程进度、算法题解、Obsidian vault，以及**学习轨的 openspec spec**（2026-10-26 从 projects 迁入本仓 `openspec/specs/`）。
+本仓是 code 四仓聚合中的学习仓：学习笔记、课程进度、算法题解、Obsidian vault，以及**学习轨的 openspec spec**（2026-10-26 从 projects 迁入本仓 `openspec/specs/`）。
 
 ## 仓库定位
 
 | 项 | 值 |
 |---|---|
 | 上游 | `https://github.com/yinchengwang/learning.git` |
-| 获取方式 | StillEvolving 父仓的 submodule（`git submodule update --init learning`） |
-| 在聚合树中的位置 | `StillEvolving/learning/` |
+| 获取方式 | code 父仓的 submodule（`git submodule update --init learning`） |
+| 在聚合树中的位置 | `learning/` |
 | 角色 | 学习仓（笔记 + 脚手架 + 题解 + 进度） |
 | 顶层目录 | 18 个（见下方「Canonical 内容」） |
 
@@ -23,7 +23,7 @@
 | [`../README.md`](../README.md) | 父仓入口：四仓关系与 bootstrap |
 
 同级仓：[`../projects/`](../projects/)（工程仓）、[`../ai-docs/`](../ai-docs/)（AI 工作文档仓）。
-第三方源码镜像在**独立仓** [`../../reference/`](../../reference/)（平级但**不进** submodule 树）。
+第三方源码镜像在 [`../reference/`](../reference/)（submodule，`update=none`，内部上游按需拉取）。
 
 > 本仓 README 自带一份归属判定表（见文末）—— 人进到 `learning/` 里看不到父仓文档，所以每仓 README 必须自带一份。
 
@@ -94,7 +94,7 @@ ctest --test-dir ../build/learning --output-on-failure
 
 - 工程代码、测试、构建脚本 → [`../projects/`](../projects/)（`../projects/engine/`）
 - 跨项目可复用的模板、方法论、提示词 → [`../ai-docs/`](../ai-docs/)
-- 第三方源码镜像 → [`../../reference/`](../../reference/)（独立仓）
+- 第三方源码镜像 → [`../reference/`](../reference/)（submodule，`update=none`）
 
 跨轨引用禁令：**本仓不得引用 `../projects/engine/` 下的工程代码**。`engineering/` 这个旧目录名已随全仓改名为 `engine/` 而失效。
 
@@ -126,4 +126,4 @@ ctest --test-dir ../build/learning --output-on-failure
 - **双轨守卫当前不生效**：`learning/CMakeLists.txt` 引用的 `../cmake/dual-track-guard.cmake` 在当前布局下不存在（父仓无 `cmake/` 目录），守卫被 `if(EXISTS)` 跳过。跨轨隔离靠约定，不靠构建期强制。
 - **`distributed/` 有意排除三个文件**：`raft.c` / `dist_txn.c` / `shard.c` 因 phase9 实现不完整被 `code-solutions/distributed/CMakeLists.txt` 的 `list(FILTER ...)` 排除出构建，产物里不会有这三个模块。
 - **`engineering/` 是失效路径**：代码目录已改名 `engine/`。唯一仍叫 `engineering` 的是 `../projects/openspec/specs/engineering/`（工程轨 spec 目录名），与旧代码目录无关。
-- **禁止对 `../../reference/` 递归初始化 submodule**：reference 内部有 95 个第三方库 submodule，递归拉取约 25 GB / 53.6 万文件。需要哪个库就用父仓 [`../scripts/fetch-reference.sh`](../scripts/fetch-reference.sh) `--name <名字>` 单独拉取。
+- **禁止对 `../reference/` 递归初始化 submodule**：reference 内部有 95 个第三方库 submodule，递归拉取约 25 GB / 53.6 万文件。需要哪个库就用父仓 [`../scripts/fetch-reference.sh`](../scripts/fetch-reference.sh) `--name <名字>` 单独拉取。
