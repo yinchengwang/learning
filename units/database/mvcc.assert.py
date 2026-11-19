@@ -69,6 +69,12 @@ def main():
         print(err)
         return 1
     out = decode(proc.stdout)
+    # demo 的输出回显出来：单元页右栏要给用户看「demo 到底打印了什么」。
+    # 不回显的话，demo 的 stdout 被 capture_output 吞掉，界面只能看到断言结果，
+    # 看不到 demo 自己的输出。回显的是**解码后的文本**，不是原始字节。
+    print("─── demo 输出开始 ───")
+    print(out.rstrip())
+    print("─── demo 输出结束 ───")
     failed = []
     for name, needle in CHECKS:
         if needle not in out:
@@ -79,6 +85,12 @@ def main():
     if failed:
         for item in failed:
             print("断言失败：" + item)
+        # demo 的错误输出走 **stderr**：判题链路（契约 §7.4）靠 stderr 判定
+        # 「环境缺失」「崩了」这两类 verdict。demo 的 stderr 被脚本 capture 住了，
+        # 不转发到脚本自己的 stderr，numpy 缺失这类问题就判不出来。
+        print("─── demo 错误输出开始 ───", file=sys.stderr)
+        print(decode(proc.stderr).rstrip(), file=sys.stderr)
+        print("─── demo 错误输出结束 ───", file=sys.stderr)
         return 1
     print("全部断言通过（%d 条）" % len(CHECKS))
     return 0
