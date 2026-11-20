@@ -148,9 +148,9 @@ def demo_textcnn():
     print("  TextCNN 文本分类演示")
     print(f"  词汇表大小: {len(vocab)}")
     print(f"  嵌入维度: 8")
-    print(f"  卷积核: Bigram + Trigram, 各 {TextCNN.num_filters} 个")
 
     textcnn = TextCNN(vocab_size=len(vocab), embed_dim=8, num_filters=4)
+    print(f"  卷积核: Bigram + Trigram, 各 {textcnn.num_filters} 个")
     for i, sentence in enumerate(sentences):
         probs, features = textcnn.forward(np.array(sentence))
         sentiment = "正面" if np.argmax(probs) == 0 else "负面"

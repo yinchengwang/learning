@@ -206,7 +206,7 @@ def demo_gating_mechanism():
     np.random.seed(42)
     dummy_x = np.random.randn(1, 4)
     dummy_h = np.random.randn(1, 8)
-    _, _ = np.random.randn(1, 8)  # c_prev (not used in demo)
+    dummy_c = np.random.randn(1, 8)  # c_prev (not used in demo)
 
     print("  GRU 门控 (简化版):")
     print("    重置门 r_t: 控制遗忘历史多少")

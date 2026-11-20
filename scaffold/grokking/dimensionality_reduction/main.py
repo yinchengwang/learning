@@ -189,7 +189,7 @@ def demo_pca_vs_lda():
             print(f"  LDA 降维到 1 维")
         except Exception:
             print("  LDA 计算中遇到数值问题")
-    print(f"  LDA 寻找类间分离方向（监督））
+    print(f"  LDA 寻找类间分离方向（监督）")
     print()
 
 
