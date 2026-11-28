@@ -13,7 +13,7 @@
 ```
 learning/notes/
 ├── .obsidian/                 # Obsidian 配置（vault 标志）
-├── _index/                    # 索引页（home + 6 轨道）
+├── _index/                    # 索引页（home + 6 轨道 + 深度系列指针）
 ├── _templates/                # 4 类笔记模板
 ├── _meta/                     # 元数据（schema 文档）
 ├── _dashboard/                # 仪表盘（Dataview）
@@ -26,6 +26,11 @@ learning/notes/
 ├── HardWare/, LLM/, Redis/, neo4j/, sqlite/, vectordb/  # 旧目录（待 Phase C 迁移）
 └── diary/, excerpt/, language/, paper/, test/         # 旧目录（待 Phase C 迁移）
 ```
+
+> **2026-11-28 变更**：`_briefing/`（每日简报）与 `learn_deep/`（13 领域深度系列）已迁出本 vault，
+> 改由 AI 定时任务写入 `C:\code\projects\ai-timer\`（该目录被 gitignore，不入版本库）。
+> 深度系列与简报的索引页也随之迁出；本 vault 的 `_index/home.md`、`_index/db.md`、`_meta/schema.md` 保留为指针页，
+> 跨仓链接一律用绝对路径 `C:/code/projects/ai-timer/...`。
 
 ## 6 大学习轨道
 
@@ -72,11 +77,11 @@ tags: []                  # 必填
 
 ## Learn Deep 数据来源
 
-学习深度文章的数据源（按 S19 约定）：
+学习深度文章的数据源（**2026-11-28 起已迁出本 vault**）：
 
-- **主存储**：`learning/notes/learn_deep/{c,cpp,db,ds,grok,illustrate}/*.md`（Obsidian vault 内）
-- **副本**：`engineering/apps/web/knowledge_hub/src/data/learn_deep/`（知识库小程序消费）
-- **同步**：运行 `learning/scripts/sync-learn-deep.sh`（当前 stub）
+- **主存储**：`C:\code\projects\ai-timer\每日一特性\learn_deep\{c,cpp,comp,db,dist,os,hw,infra,llm,agent,rag,vectordb,aisec,codegen,graph}\`（由 AI 定时任务写入，`ai-timer/` 被 gitignore）
+- **副本**：`projects/apps/web/src/data/learn_deep/` —— **当前不存在**。原 `engineering/apps/web/knowledge_hub/src/data/learn_deep/` 随 2026-11-26 前端合并一并消失，需先建目录才能恢复。
+- **同步**：运行 `learning/scripts/sync-learn-deep.sh`（路径已更新到新布局；目标目录需先手动创建）
 
 
 ## 仪表盘
@@ -103,5 +108,7 @@ tags: []                  # 必填
 
 ## 相关文档
 
-- [docs/learning/obsidian-setup.md](../../docs/learning/obsidian-setup.md) —— 外部读者也能照着装
-- [docs/architecture/dual-track.md](../../docs/architecture/dual-track.md) —— 双轨架构图
+- `docs/` 下暂无 `learning/obsidian-setup.md` 与 `architecture/dual-track.md`（原链接失效）。当前可参考：
+  - 本目录的 [_meta/schema.md](_meta/schema.md) —— Frontmatter Schema 规范
+  - [_index/home.md](_index/home.md) —— 总索引与深度系列入口
+- 深度系列与每日简报的产物在 `C:\code\projects\ai-timer\`（AI 定时任务产出，不入版本库），见 `C:\code\projects\ai-timer\README.md`。

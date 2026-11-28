@@ -8,14 +8,23 @@
 #   bash sync-learn-deep.sh init-state   # 初始化 sync state
 #   bash sync-learn-deep.sh status       # 列出状态
 #   bash sync-learn-deep.sh --dry-run    # 显示意图
+#
+# 路径变更史：
+#   2026-11-28 源从 learning/notes/learn_deep/ 迁到 projects/ai-timer/每日一特性/learn_deep/
+#              （learn_deep 迁出 Obsidian vault，改由 AI 定时任务写入）
+#   2026-11-26 目标 knowledge_hub 前端已并入 apps/web/，原 engineering/apps/web/knowledge_hub/
+#              目录不再存在；apps/web 无 src/data/，learn_deep 数据副本随合并一并消失
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# learning/ 是 C:\code\learning，REPO_ROOT 指向 C:\code
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-SOURCE="${REPO_ROOT}/learning/notes/learn_deep"
-TARGET="${REPO_ROOT}/engineering/apps/web/knowledge_hub/src/data/learn_deep"
+SOURCE="${REPO_ROOT}/projects/ai-timer/每日一特性/learn_deep"
+# knowledge_hub 已并入 apps/web；apps/web 当前无 src/data/learn_deep，
+# 若要恢复数据副本，需先在 apps/web 下建立 src/data/learn_deep/
+TARGET="${REPO_ROOT}/projects/apps/web/src/data/learn_deep"
 STATE_FILE="${SOURCE}/.sync-state.json"
 
 REVERSE=0
